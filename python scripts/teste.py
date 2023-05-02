@@ -1,7 +1,12 @@
 
+import ipaddress
 file = open("input.csv", "r")
 
-output = open("output.csv","w")
+output = open("insert.sql","w")
+def calcMask(ip):
+    rede = ipaddress.IPv4Network(ip)
+    return rede
+
 
 for line in file:
     line = line.replace('\'','\\\'')[0:-1]
@@ -18,15 +23,23 @@ for line in file:
 
     fields = fixline.split("\t")
 
+    # masks = calcMask(fields[0])
+    # fields.append( masks[0])
+    # fields.append( masks[-1] )
+
     newLine = ''
 
     for field in fields:
         
         newLine += f"'{field}',"
+       
     
-    newLine = 'INSERT INTO aux_IPv4Blocks values (DEFAULT,' + newLine[0:-1] + ');\n'
+    newLine = 'INSERT INTO aux_geolite2CityLocationsEn values (DEFAULT,' + newLine[0:-1] + ');\n'
 
     output.writelines(newLine)
 
 output.close()
+
+
+
 
