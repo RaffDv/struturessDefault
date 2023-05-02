@@ -24,7 +24,7 @@ for line in file:
         
         newLine += f"'{field}',"
     
-    newLine = 'INSERT INTO aux_geolite2CityLocationsEn values (DEFAULT,' + newLine[0:-1] + ');\n'
+    newLine = 'INSERT INTO aux_IPv4Blocks values (DEFAULT,' + newLine[0:-1] + ');\n'
 
     output.writelines(newLine)
 
